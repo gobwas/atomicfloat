@@ -16,7 +16,12 @@ go test -run=none -bench=. -cpu=4,8,12
 ```go
 package main
 
-import "github.com/gobwas/atomicfloat"
+import (
+	"fmt"
+	"time"
+
+	"github.com/gobwas/atomicfloat"
+)
 
 func main() {
 	f64 := atomicfloat.NewFloat64()
@@ -31,6 +36,6 @@ func main() {
 	// Let all goroutines complete.
 	<-time.After(time.Second)
 
-	println(f64.Load()) // 42
+	fmt.Printf("%.2f", f64.Load()) // 42.00
 }
 ```
